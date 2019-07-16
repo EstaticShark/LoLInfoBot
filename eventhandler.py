@@ -1,4 +1,5 @@
 import discord, aiohttp, json
+from math import ceil
 from champid import champ_id
 from config import token_dict, region_dict
 from summonersearch import summoner_search
@@ -108,17 +109,17 @@ async def on_message(msg):
                                '/by-name/' + name + '?api_key=' + \
                                token_dict['league']
 
-                print(summoner_url)
+                #print(summoner_url)
 
                 summoner_dict = await summoner_search(name)
 
-                print(summoner_dict)
+                #print(summoner_dict)
 
                 if 'id' not in summoner_dict.keys():
                     await channel.send('The summoner name ' + name + \
-                                       ' cannot be found. Names with special \
-                                       characters cannot be searched, otherwise\
-                                        try switching regions?')
+                                       ' cannot be found. Names with special '
+                                       'characters cannot be searched, '
+                                       'otherwise try switching regions.')
 
                 else:
                     await channel.send('Sending info on summoner: ' + name )
@@ -163,14 +164,31 @@ async def on_message(msg):
                             ranked_msg = ranked_list[counter]['tier'] + ' ' + \
                                          ranked_list[counter]['rank']
 
+                    # Time info
+                    if summoner_dict['time'] == -1:
+                        time_msg = '0'
+
+                    else:
+                        time_msg = '~' + str(summoner_dict['time']) + ' minutes'
+
+                        hours_spent = ceil(int(summoner_dict['time'])/60)
+
+                        time_msg += '/~' + str(hours_spent) + ' hours'
+
+                        days_spent = round((int(summoner_dict['time'])/60)/24, 1)
+
+                        time_msg += '/~' + str(days_spent) + ' days'
+
 
 
                     embed = discord.Embed(title='Summoner: ' + name,
                                           description= name + '\'s profile',
                                           color=0x0000ff)
+                    '''
                     print('http://avatar.leagueoflegends.com/'
                                             + region_dict['current'].lower() +
                                             '/' + name.replace(' ','+') + '.png')
+                                            '''
                     embed.set_thumbnail(url='http://avatar.leagueoflegends.com/'
                                             + region_dict['current'].lower() +
                                             '/' + name.replace(' ','+') + '.png')
@@ -182,6 +200,13 @@ async def on_message(msg):
                                     inline=True)
                     embed.add_field(name='Champion Mastery', value=mastery_msg,
                                     inline=True)
+                    embed.add_field(name='Time Spent', value=time_msg,
+                                    inline=True)
+                    embed.add_field(name='More Details',
+                                    value='https://na.op.gg/summoner/userName='
+                                          + name.replace(' ','+'), inline=True)
+                    embed.set_footer(text='LoLInfoTool is not associated with'
+                                          ' op.gg or wol.gg')
 
                     await channel.send(embed=embed)
 
