@@ -4,6 +4,7 @@ from champid import champ_id
 from masterysearch import mastery_search
 from rankedsearch import ranked_search
 from timespent import time_spent
+from timespentweek import time_spent_week
 
 async def summoner_search(name:str):
     summoner_url = 'https://' + region_dict[region_dict['current']].lower() \
@@ -23,6 +24,10 @@ async def summoner_search(name:str):
                 js_summoner['ranked'] = await ranked_search(js_summoner['id'])
 
                 js_summoner['time'] = await time_spent(name)
+
+                js_summoner['time_week'] = await time_spent_week(js_summoner['accountId'])
+
+                #print(js_summoner['time_week'])
 
                 #print(js_summoner['time'])
 

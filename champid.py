@@ -1,4 +1,5 @@
 champ_id = {
+    141: "Kayn",
     18: "Tristana",
     266: "Aatrox",
     412: "Thresh",

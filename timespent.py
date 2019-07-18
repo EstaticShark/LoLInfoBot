@@ -1,4 +1,4 @@
-import aiohttp, requests
+import aiohttp
 from bs4 import BeautifulSoup
 from config import region_dict
 
