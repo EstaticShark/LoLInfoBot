@@ -10,3 +10,11 @@ As for the League of Legends developer key you will need to apply at: https://de
 
 To add the bot to your server with permissions to send messages, embed links and attach files,
 click the following link: https://discordapp.com/api/oauth2/authorize?client_id=599004451767975976&permissions=51200&scope=bot
+
+
+# Features
+!hello: A welcome message you can use to see if the bot is active
+
+!help: A helpful menu of commands
+
+!summoner <Summoner Name>: Returns a menu of information about the summoner name you input such as time spent, rank, level, etc.
