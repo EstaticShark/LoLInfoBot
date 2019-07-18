@@ -16,8 +16,6 @@ async def summoner_search(name:str):
             if r.status == 200:
                 js_summoner = await r.json()
 
-                #print(js_summoner)
-
                 js_summoner['champ_mastery'] = await mastery_search(
                     js_summoner['id'], 5)
 
@@ -26,10 +24,6 @@ async def summoner_search(name:str):
                 js_summoner['time'] = await time_spent(name)
 
                 js_summoner['time_week'] = await time_spent_week(js_summoner['accountId'])
-
-                #print(js_summoner['time_week'])
-
-                #print(js_summoner['time'])
 
                 return js_summoner
 

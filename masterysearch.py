@@ -1,6 +1,5 @@
-import aiohttp, json
+import aiohttp
 from config import region_dict, token_dict
-from champid import champ_id
 
 async def mastery_search(summoner_id: str, top_num: int) -> dict:
     summoner_url = 'https://' + region_dict[region_dict['current']].lower() \

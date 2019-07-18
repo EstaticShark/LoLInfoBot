@@ -1,6 +1,5 @@
 import aiohttp, json
 from config import region_dict, token_dict
-from champid import champ_id
 
 async def ranked_search(summoner_id: str) -> dict:
     summoner_url = 'https://' + region_dict[region_dict['current']].lower() + \

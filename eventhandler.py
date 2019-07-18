@@ -104,17 +104,7 @@ async def on_message(msg):
 
         if valid_name and len(name) >= 4: # Implement once module is complete
 
-            # Prone for removal later
-            summoner_url = 'https://' + region_dict[region_dict['current']]\
-                .lower() + '.api.riotgames.com/lol/summoner/v4/summoners' \
-                           '/by-name/' + name + '?api_key=' + \
-                           token_dict['league']
-
-            #print(summoner_url)
-
             summoner_dict = await summoner_search(name)
-
-            #print(summoner_dict)
 
             if 'id' not in summoner_dict.keys():
                 await channel.send('The summoner name ' + name + \
@@ -203,37 +193,37 @@ async def on_message(msg):
                 embed = discord.Embed(title='Summoner: ' + name,
                                       description= name + '\'s profile',
                                       color=0x0000ff)
-                '''
-                print('http://avatar.leagueoflegends.com/'
-                                        + region_dict['current'].lower() +
-                                        '/' + name.replace(' ','+') + '.png')
-                                        '''
+
                 embed.set_thumbnail(url='http://avatar.leagueoflegends.com/'
                                         + region_dict['current'].lower() +
                                         '/' + name.replace(' ','+') + '.png')
+
                 embed.add_field(name='Level', value= summoner_dict
                 ['summonerLevel'], inline=True)
+
                 embed.add_field(name='Region', value=region_dict['current'],
                                 inline=True)
+
                 embed.add_field(name='Rank', value=ranked_msg,
                                 inline=True)
+
                 embed.add_field(name='Champion Mastery', value=mastery_msg,
                                 inline=True)
+
                 embed.add_field(name='Time Spent', value=time_msg,
                                 inline=True)
+
                 embed.add_field(name='Time Spent (Past 7 Days)',
                                 value= time_per_week_msg, inline=True)
+
                 embed.add_field(name='More Details',
                                 value='https://na.op.gg/summoner/userName='
                                       + name.replace(' ','+'), inline=True)
+
                 embed.set_footer(text='LoLInfoTool is not associated with'
                                       ' op.gg or wol.gg')
 
                 await channel.send(embed=embed)
-
-
-            # Example: retrieving the icon of me:
-            # http://avatar.leagueoflegends.com/na/Ieatyourweapon.png
 
 
         else:

@@ -1,5 +1,4 @@
 import aiohttp, datetime
-from bs4 import BeautifulSoup
 from config import region_dict, token_dict
 from timeinmatch import time_in_match
 
@@ -8,14 +7,10 @@ async def time_spent_week(accountId: str) -> int:
           '.api.riotgames.com/lol/match/v4/matchlists/by-account/' + \
           accountId + '?api_key=' + token_dict['league']
 
-    #print(url)
-
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as r:
             if r.status == 200:
                 js_time = await r.json()
-
-                #print(js_time)
 
                 match_list = js_time['matches']
 
