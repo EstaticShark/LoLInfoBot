@@ -24,7 +24,7 @@ async def on_message(msg):
     # Welcome Message: Complete
     if msg.content.lower().startswith('!hello'):
         channel = msg.channel
-        await channel.send('Hello, there summoner. I am ready to receive input. For a list of inputs, type: !help')
+        await channel.send('Hello there summoner, I am ready to provide support. For a list of inputs, type: !help')
 
 
     # Help Message: Work in progress

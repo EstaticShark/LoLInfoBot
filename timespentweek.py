@@ -31,7 +31,8 @@ async def time_spent_week(accountId: str) -> int:
                     time_difference = current_time - game_time
 
                     if time_difference.days <= 7:
-                        time_played += await time_in_match(match_list[game]['gameId'])
+                        time_played += await time_in_match(match_list[game]
+                                                           ['gameId'])
 
                     else:
                         within_week = False

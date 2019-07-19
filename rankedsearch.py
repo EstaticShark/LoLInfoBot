@@ -1,4 +1,4 @@
-import aiohttp, json
+import aiohttp
 from config import region_dict, token_dict
 
 async def ranked_search(summoner_id: str) -> dict:

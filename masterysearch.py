@@ -15,4 +15,4 @@ async def mastery_search(summoner_id: str, top_num: int) -> dict:
                 return js_champ[:top_num]
 
             else:
-                return []
+                return {}
