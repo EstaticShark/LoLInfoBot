@@ -17,4 +17,6 @@ click the following link: https://discordapp.com/api/oauth2/authorize?client_id=
 
 !help: A helpful menu of commands
 
+!region <Region Code>: Changes the region searched to the region code you enter, the help menu contains the region codes you can enter. North America (NA) is the default search region
+
 !summoner <Summoner Name>: Returns a menu of information about the summoner name you input such as time spent, rank, level, etc.
